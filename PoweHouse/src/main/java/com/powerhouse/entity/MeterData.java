@@ -1,13 +1,22 @@
 package com.powerhouse.entity;
 
 import java.io.Serializable;
+import java.time.Month;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
+@Table(
+	    uniqueConstraints=
+	        @UniqueConstraint(columnNames={"meterId", "month"})
+	    
+	)
 
 @Entity
 public class MeterData implements Serializable {
@@ -17,15 +26,15 @@ public class MeterData implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	private long meterId;
+	private String meterId;
 	private String profileName;
 	private String month;
 	private double meterReading;
-	@Temporal(TemporalType.DATE)
 	private Date recordDate;
 	
 	
-	public MeterData(long meterId, String profileName, double meterReading, Date recordDate) {
+	
+	public MeterData(String meterId, String profileName, double meterReading, Date recordDate) {
 		super();
 		this.meterId = meterId;
 		this.profileName = profileName;
@@ -35,7 +44,7 @@ public class MeterData implements Serializable {
 	
 	
 
-	public MeterData(long meterId, String profileName, String month, double meterReading, Date recordDate) {
+	public MeterData(String meterId, String profileName, String month, double meterReading, Date recordDate) {
 		super();
 		this.meterId = meterId;
 		this.profileName = profileName;
@@ -46,11 +55,17 @@ public class MeterData implements Serializable {
 
 
 
-	public long getMeterId() {
+	public long getId() {
+		return id;
+	}
+
+
+
+	public String getMeterId() {
 		return meterId;
 	}
 
-	public void setMeterId(long meterId) {
+	public void setMeterId(String meterId) {
 		this.meterId = meterId;
 	}
 
