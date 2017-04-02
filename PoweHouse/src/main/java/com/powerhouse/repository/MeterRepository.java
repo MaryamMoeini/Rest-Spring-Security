@@ -27,4 +27,7 @@ public interface MeterRepository extends JpaRepository<MeterData, Long> {
 	@Query("select m from MeterData m where m.meterId= ?1 and m.recordDate between ?2 and ?3")
 	Collection<MeterData> getRecords(String meterId, Date from, Date to);
 
+	@Query("select m from MeterData m where m.month = ?1 and m.meterId = ?2")
+	MeterData findBymonthAndmeterId(String lastMonth, String meterId);
+
 }

@@ -21,7 +21,7 @@ import com.powerhouse.repository.ValidationEngin;
 
 @RestController
 @RequestMapping("/profile")
-public class ProfileRestService extends ExceptionHandler {
+public class ProfileRestService extends ExceptionHandlerController {
 	
 	@Autowired
 	ProfileRepository profileRepository; 

@@ -1,25 +1,19 @@
 package com.powerhouse.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.Cascade;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-//@Table(
-//	    uniqueConstraints=
-//	        @UniqueConstraint(columnNames={"profileName", "month"})
-//	)
+@Table(
+	    uniqueConstraints=
+	        @UniqueConstraint(columnNames={"profileName" , "meterId"})
+	)
 
 @Entity
 public class Profile {
