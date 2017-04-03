@@ -38,8 +38,8 @@ public class ValidationEnginImpl implements ValidationEngin {
 		}
 		
 		// validate the existance of the profile
-		Collection<Profile> seachProfile = profileRepository.getByMeterId(input.getMeterId());
-		if(seachProfile.size() == 0){
+		Profile seachProfile = profileRepository.getByMeterId(input.getMeterId());
+		if(seachProfile == null){
 			throw new Error("This profile does not exist! please check the Meter ID");
 		}
 		

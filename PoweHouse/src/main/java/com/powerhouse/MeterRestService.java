@@ -67,7 +67,7 @@ public class MeterRestService extends ExceptionHandlerController {
 		return ResponseEntity.ok(meterData);
 	}
 	
-	@RequestMapping(value = "/consumption" , method = RequestMethod.POST)
+	@RequestMapping(value = "/getrecords" , method = RequestMethod.POST)
 	public ResponseEntity<Collection<MeterData>> getConsumption(@RequestBody MeterDataSearch input) throws Exception{
 		
 		Collection<MeterData> response = meterRepository.getRecords(input.getMeterId() , input.getStartDate() , input.getEndDate());

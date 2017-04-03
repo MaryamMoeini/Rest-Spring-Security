@@ -41,7 +41,7 @@ public class ProfileRestService extends ExceptionHandlerController {
 				.fromCurrentRequest().path("/profile")
 				.buildAndExpand(profile.getId()).toUri();
 		
-		return ResponseEntity.ok(profile);
+		return ResponseEntity.created(location).body(profile);
 	}
 
 	@RequestMapping(value="/delete" , method = RequestMethod.DELETE)
@@ -77,10 +77,26 @@ public class ProfileRestService extends ExceptionHandlerController {
 	}
 	
 	@RequestMapping(value = "/getdata/{meterid}" , method = RequestMethod.GET)
-	public ResponseEntity<Collection<Profile>> getProfileData(@PathVariable ("meterid") String meterId){
-		Collection<Profile> profileData = profileRepository.getByMeterId(meterId);
+	public ResponseEntity<Profile> getProfileData(@PathVariable ("meterid") String meterId){
+		Profile profileData = profileRepository.getByMeterId(meterId);
 		return ResponseEntity.ok(profileData);
 		
+	}
+	
+	@RequestMapping(value = "/getrecord/{meterid}/{month}")
+	public ResponseEntity<Consumption> getConsumption(@PathVariable("meterid") String meterid, 
+			@PathVariable("month") String month) throws Exception{
+		
+		Profile records = profileRepository.getByMeterId(meterid);
+		Consumption consumption = new Consumption();
+		
+		for(Consumption c : records.getConsumption()){
+			if(c.getMonth().equals(month)){
+				consumption = c;
+				break;
+			}
+		}
+		return ResponseEntity.ok(consumption);
 	}
 
 }
