@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +32,7 @@ public class MeterRestService extends ExceptionHandlerController {
 	@Autowired
 	ValidationEngin validationEngin;
 	
-	@RequestMapping(value="/record" , method = RequestMethod.POST)
+	@RequestMapping(value="/record" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<MeterData> recordMeterData(@RequestBody MeterData input)throws Exception{
 		
 		setMonthName(input);
@@ -60,14 +61,14 @@ public class MeterRestService extends ExceptionHandlerController {
 		return ResponseEntity.ok().build();
 	}
 	
-	@RequestMapping(value="/getmeterdata/{meterid}" , method= RequestMethod.GET)
+	@RequestMapping(value="/getmeterdata/{meterid}" , method= RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Collection<MeterData>> getDataByMeterId(@PathVariable("meterid") String id) throws Exception{
 		Collection<MeterData> meterData = meterRepository.getBymeterId(id);
 		
 		return ResponseEntity.ok(meterData);
 	}
 	
-	@RequestMapping(value = "/getrecords" , method = RequestMethod.POST)
+	@RequestMapping(value = "/getrecords" , method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Collection<MeterData>> getConsumption(@RequestBody MeterDataSearch input) throws Exception{
 		
 		Collection<MeterData> response = meterRepository.getRecords(input.getMeterId() , input.getStartDate() , input.getEndDate());
