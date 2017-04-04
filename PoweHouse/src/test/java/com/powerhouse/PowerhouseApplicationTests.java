@@ -57,7 +57,7 @@ public class PowerhouseApplicationTests {
 		this.moc = MockMvcBuilders.webAppContextSetup(context).build();
 	}
 
-	@Ignore
+	
 	@Test
 	public void createProfileRestServiceTest() throws Exception {
 
@@ -72,17 +72,16 @@ public class PowerhouseApplicationTests {
 		list.add(consump1);
 		testProfile.setConsumption(list);
 
-		System.out.println(mapper.writeValueAsString(testProfile));
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
-				.post(URL_PREFIX + "/profile/create", mapper.writeValueAsString(testProfile))
-				.param(mapper.writeValueAsString(testProfile));
+				.post(URL_PREFIX + "/profile/create")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(mapper.writeValueAsString(testProfile));
 
-		moc.perform(requestBuilder).andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-				.andExpect(content().json(testProfile.toString(), true)).andReturn();
+		moc.perform(requestBuilder)
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(status().isCreated()).andReturn();
 	}
 
-	@Ignore
 	@Test
 	public void deleteProfileRestServiceTest() throws Exception {
 		Profile testProfile = new Profile();
@@ -95,11 +94,13 @@ public class PowerhouseApplicationTests {
 		consump1.setMonth("April");
 		list.add(consump1);
 		testProfile.setConsumption(list);
-		mapper.writeValueAsString(testProfile);
 
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
-				.delete(URL_PREFIX + "/profile/create", mapper.writeValueAsString(testProfile))
-				.contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(testProfile)); 
+				.delete(URL_PREFIX + "/profile/delete")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(mapper.writeValueAsString(testProfile));
+		
+		
 		moc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
 	}
 
