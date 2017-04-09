@@ -76,7 +76,7 @@ public class PowerhouseApplicationTests {
 				.post(URL_PREFIX + "/profile/create")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(mapper.writeValueAsString(testProfile));
-
+System.out.print(mapper.writeValueAsString(testProfile));
 		moc.perform(requestBuilder)
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isCreated()).andReturn();

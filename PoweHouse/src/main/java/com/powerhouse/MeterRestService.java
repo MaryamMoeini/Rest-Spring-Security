@@ -41,9 +41,11 @@ public class MeterRestService{
 		for (MeterData data : input) {
 			setMonthName(data);
 			try {
-				validationEngin.validateMeterData(data);
-				meterRepository.save(data);
-				recordedData.add(data);
+				if(validationEngin.validateMeterData(data)){
+					meterRepository.save(data);
+					recordedData.add(data);
+				}
+				
 			} catch (Exception e) {
 				continue;
 			}

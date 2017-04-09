@@ -1,5 +1,6 @@
 package com.powerhouse.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,8 +17,9 @@ import javax.persistence.UniqueConstraint;
 	)
 
 @Entity
-public class Profile {
+public class Profile implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private long id;

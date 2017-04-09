@@ -21,7 +21,7 @@ import com.powerhouse.repository.ValidationEngin;
 
 @RestController
 @RequestMapping("/profile")
-public class ProfileRestService extends ExceptionHandlerController {
+public class ProfileRestService {
 	
 	@Autowired
 	ProfileRepository profileRepository; 
@@ -32,9 +32,10 @@ public class ProfileRestService extends ExceptionHandlerController {
 	@Autowired
 	ConsumptionRepository consumptionRepository;
 	
-	@RequestMapping(value = "/create" , method = RequestMethod.POST)
+	@RequestMapping(value = "/create" , method = RequestMethod.POST ,
+			consumes  = MediaType.APPLICATION_JSON_VALUE ,
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Profile> create(@RequestBody Profile input) throws Exception{
-		
 		validationEngin.validateProfile(input);
 		Profile profile = profileRepository.save(input);
 		URI location = ServletUriComponentsBuilder
@@ -42,9 +43,11 @@ public class ProfileRestService extends ExceptionHandlerController {
 				.buildAndExpand(profile.getId()).toUri();
 		
 		return ResponseEntity.created(location).body(profile);
+		
 	}
 
-	@RequestMapping(value="/delete" , method = RequestMethod.DELETE)
+	@RequestMapping(value="/delete" , method = RequestMethod.DELETE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Profile>> deleteFraction(@RequestBody Profile input) throws Exception{
 		String meterId= input.getMeterId();
 		Profile search = profileRepository.findByMeterId(meterId);
@@ -61,7 +64,8 @@ public class ProfileRestService extends ExceptionHandlerController {
 		return ResponseEntity.ok().build();
 	}
 	
-	@RequestMapping(value="/update" , method = RequestMethod.PUT)
+	@RequestMapping(value="/update" , method = RequestMethod.PUT ,
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Profile> updateProfile(@RequestBody Profile profile) throws Exception{
 		//assuming that in every update we get 12 ratios for 12 month
 		Profile existingProfile = profileRepository.findByMeterId(profile.getMeterId());
@@ -76,14 +80,16 @@ public class ProfileRestService extends ExceptionHandlerController {
 		return ResponseEntity.ok().body(updatedProfile);
 	}
 	
-	@RequestMapping(value = "/getdata/{meterid}" , method = RequestMethod.GET)
+	@RequestMapping(value = "/getdata/{meterid}" , method = RequestMethod.GET ,
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Profile> getProfileData(@PathVariable ("meterid") String meterId){
 		Profile profileData = profileRepository.getByMeterId(meterId);
 		return ResponseEntity.ok(profileData);
 		
 	}
 	
-	@RequestMapping(value = "/getrecord/{meterid}/{month}")
+	@RequestMapping(value = "/getrecord/{meterid}/{month}" ,
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Consumption> getConsumption(@PathVariable("meterid") String meterid, 
 			@PathVariable("month") String month) throws Exception{
 		
