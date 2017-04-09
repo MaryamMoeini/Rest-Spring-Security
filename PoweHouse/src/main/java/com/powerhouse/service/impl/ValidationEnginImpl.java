@@ -59,15 +59,12 @@ public class ValidationEnginImpl implements ValidationEngin {
 		
 		
 		
-		//validate the consumption ratio
+		//validate the consumption ratio 
 //		if (lastMonthRecord != null && lasttwoMonthRecord!= null) {
 //		  double lastMonthConsumption = lastMonthRecord.getMeterReading() - lasttwoMonthRecord.getMeterReading();
 //		  double consumption = input.getMeterReading() -  lastMonthRecord.getMeterReading();
 //		  double tolerance = lastMonthConsumption * 0.25; 
 //		  double maxAcceptedreading =  lastMonthConsumption  + tolerance;
-//		  System.err.println("tolerance" +tolerance);
-//		  System.err.println("maxAcceptedreading" +maxAcceptedreading);
-//		  System.err.println("consumption" +consumption);
 //		  if(!(consumption <= maxAcceptedreading)){
 //			  throw new Error("This consumption is exceeding the %25 tolerance");
 //		  }
