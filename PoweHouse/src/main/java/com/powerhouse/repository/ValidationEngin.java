@@ -8,7 +8,7 @@ import com.powerhouse.entity.Profile;
 @Component
 public interface ValidationEngin {
 
-	void validateMeterData(MeterData input);
+	boolean validateMeterData(MeterData input);
 
 	void validateProfile(Profile input);
 

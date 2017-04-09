@@ -23,17 +23,20 @@ public class ValidationEnginImpl implements ValidationEngin {
 	ProfileRepository profileRepository;
 
 	@Override
-	public void validateMeterData(MeterData input) {
-		String lastMonth;
+	public boolean validateMeterData(MeterData input) {
 		DateFormatSymbols dfs = new DateFormatSymbols();
 		String[] months = dfs.getMonths();
-		lastMonth = months[input.getRecordDate().getMonth() - 1];
-
+		String lastMonth = months[input.getRecordDate().getMonth() - 1];
+		//String lastTwoMonth=months[input.getRecordDate().getMonth() - 2];
+		
+		
 		// check if current meter reading is more than last month
 		MeterData lastMonthRecord = meterRepository.findBymonthAndmeterId(lastMonth, input.getMeterId());
+		//MeterData lasttwoMonthRecord = meterRepository.findBymonthAndmeterId(lastTwoMonth, input.getMeterId());
 		if (lastMonthRecord != null) {
 			if (lastMonthRecord.getMeterReading() > input.getMeterReading()) {
 				throw new Error("Meter reading of this month can not be less than last month! Invalid data");
+				
 			}
 		}
 		
@@ -44,11 +47,20 @@ public class ValidationEnginImpl implements ValidationEngin {
 		}
 		
 		//validate the consumption ratio
-		if (lastMonthRecord != null) {
-		  double consumption = lastMonthRecord.getMeterReading() - input.getMeterReading();
-		  //double tolerance = consumption %25; 
-		 // double acceptedreading = 
-		}
+//		if (lastMonthRecord != null && lasttwoMonthRecord!= null) {
+//		  double lastMonthConsumption = lastMonthRecord.getMeterReading() - lasttwoMonthRecord.getMeterReading();
+//		  double consumption = input.getMeterReading() -  lastMonthRecord.getMeterReading();
+//		  double tolerance = lastMonthConsumption * 0.25; 
+//		  double maxAcceptedreading =  lastMonthConsumption  + tolerance;
+//		  System.err.println("tolerance" +tolerance);
+//		  System.err.println("maxAcceptedreading" +maxAcceptedreading);
+//		  System.err.println("consumption" +consumption);
+//		  if(!(consumption <= maxAcceptedreading)){
+//			  throw new Error("This consumption is exceeding the %25 tolerance");
+//		  }
+//		}
+	
+	return true;
 	}
 
 	@Override
