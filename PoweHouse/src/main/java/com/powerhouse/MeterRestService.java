@@ -56,7 +56,7 @@ public class MeterRestService{
 	}
 
 	@RequestMapping(value = "/remove", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection<MeterData>> removeMeterData(@RequestBody Collection<MeterData> input)
+	public ResponseEntity<Void> removeMeterData(@RequestBody Collection<MeterData> input)
 			throws Exception {
 
 		for (MeterData m : input) {

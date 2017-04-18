@@ -48,7 +48,7 @@ public class ProfileRestService {
 
 	@RequestMapping(value="/delete" , method = RequestMethod.DELETE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection<Profile>> deleteFraction(@RequestBody Profile input) throws Exception{
+	public ResponseEntity<Void> deleteFraction(@RequestBody Profile input) throws Exception{
 		String meterId= input.getMeterId();
 		Profile search = profileRepository.findByMeterId(meterId);
 	
