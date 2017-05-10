@@ -1,4 +1,4 @@
-package com.powerhouse;
+package com.RestProvider;
 
 import java.net.URI;
 import java.util.Collection;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.powerhouse.entity.Consumption;
-import com.powerhouse.entity.Profile;
-import com.powerhouse.repository.ConsumptionRepository;
-import com.powerhouse.repository.ProfileRepository;
-import com.powerhouse.repository.ValidationEngin;
+import com.RestProvider.entity.Consumption;
+import com.RestProvider.entity.Profile;
+import com.RestProvider.repository.ConsumptionRepository;
+import com.RestProvider.repository.ProfileRepository;
+import com.RestProvider.repository.ValidationEngin;
 
 @RestController
 @RequestMapping("/profile")

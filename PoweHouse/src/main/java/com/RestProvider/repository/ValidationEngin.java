@@ -1,9 +1,9 @@
-package com.powerhouse.repository;
+package com.RestProvider.repository;
 
 import org.springframework.stereotype.Component;
 
-import com.powerhouse.entity.MeterData;
-import com.powerhouse.entity.Profile;
+import com.RestProvider.entity.MeterData;
+import com.RestProvider.entity.Profile;
 
 @Component
 public interface ValidationEngin {

@@ -1,4 +1,4 @@
-package com.powerhouse.repository;
+package com.RestProvider.repository;
 
 import java.util.Collection;
 import java.util.Date;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.powerhouse.entity.MeterData;
+import com.RestProvider.entity.MeterData;
 
 public interface MeterRepository extends JpaRepository<MeterData, Long> {
 

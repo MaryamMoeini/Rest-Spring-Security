@@ -1,4 +1,4 @@
-package com.powerhouse;
+package com.RestProvider;
 
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;

@@ -1,11 +1,11 @@
-package com.powerhouse.repository;
+package com.RestProvider.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.powerhouse.entity.Consumption;
+import com.RestProvider.entity.Consumption;
 
 public interface ConsumptionRepository extends JpaRepository<Consumption, Long> {
 	@Modifying

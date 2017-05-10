@@ -1,4 +1,4 @@
-package com.powerhouse.entity;
+package com.RestProvider.entity;
 
 import java.io.Serializable;
 import java.time.Month;
