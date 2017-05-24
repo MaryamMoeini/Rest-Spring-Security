@@ -1,8 +1,7 @@
 # Rest-Spring-Security
 
 Overview:
-This application is designed for an energy platform which enables the system to validate and store data related to Profiles and 
-MeterResding in SQL data base.
+In this project we are providing a set of REST-full WEB service which are designed for an energy platform which enables the front-end system to perform CRUD actions on sets of data which are provided by customers/users on the platform.
 
 This a spring boot application, demonstrating a simple back-end application which implements REST API. 
 
