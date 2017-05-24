@@ -3,8 +3,6 @@
 Overview:
 In this project we are providing a set of REST-full WEB service which are designed for an energy platform which enables the front-end system to perform CRUD actions on sets of data which are provided by customers/users on the platform.
 
-This a spring boot application, demonstrating a simple back-end application which implements REST API. 
-
 In this project I am using basic features of spring such as:
 
 * Spring boot
@@ -18,9 +16,9 @@ We have a set of Entities which describe our model objects (Profile and MeterRea
 relations. 
 
 In the next layer, We have Interfaces (Repositories and Validation Engine). Repositories are implementing JPARepository which help them in
-communication with DB and Validation Engine is a build in Validation implementation which validates the data received from by REST services.
+communication with DB and Validation Engine is a build in Validation implementation which validates the data received from REST clients.
 
-and Finally we have the REST services (ProfileRestService and MeterRest Service). These REST controllers provide basic CRUD services for
+and Finally we have the REST services (ProfileRestService and MeterRestService). These REST controllers provide basic CRUD actions for
 Profile and MeterReading.
 
 
@@ -30,9 +28,9 @@ In the SecurityConfig.java I am applying a basic authentication and Authorizatio
 
 Sample of REST-API Documentation (Full Documentation is Available for Private Connections) 
 
-URL /profile/create
-Method
-POST Data Params { "meterId" : [string] "profileName" : [string] “consumption” : [ { “fraction” : double “month” : String} ] }
-Success Response
-Content : {Data Recorded}
-Code : 200 Error Response Http Status Code: 401 unauthorized
+URL /profile/create<br/>
+Method<br/>
+POST Data Params { "meterId" : [string] "profileName" : [string] “consumption” : [ { “fraction” : double “month” : String} ] }<br/>
+Success Response<br/>
+Content : {Data Recorded}<br/>
+Code : 200 Error Response Http Status Code: 401 unauthorized<br/>
